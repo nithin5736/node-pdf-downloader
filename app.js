@@ -8,6 +8,8 @@ const path = require("path");
 const User = require("./models/user");
 const options = require("./helpers/options");
 
+require('dotenv').config();
+
 const app = express();
 
 mongoose
