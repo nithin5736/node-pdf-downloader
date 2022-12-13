@@ -8,7 +8,7 @@ const path = require("path");
 const User = require("./models/user");
 const options = require("./helpers/options");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 
@@ -78,16 +78,14 @@ app.get("/download", async (req, res) => {
           },
         };
 
-        pdf
-          .create(data, options)
-          .toFile("./docs/" + filename, function (err, data) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.download("./docs/" + filename);
-              console.log("File created successfully");
-            }
-          });
+        pdf.create(data, options).toFile("report.pdf", function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.download("report.pdf");
+            console.log("File created successfully");
+          }
+        });
       }
     }
   );
@@ -117,16 +115,14 @@ app.get("/admin", async (req, res) => {
           },
         };
 
-        pdf
-          .create(data, options)
-          .toFile("./docs/" + filename, function (err, data) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.download("./docs/" + filename);
-              console.log("File created successfully");
-            }
-          });
+        pdf.create(data, options).toFile("admin.pdf", function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.download("admin.pdf");
+            console.log("File created successfully");
+          }
+        });
       }
     }
   );
