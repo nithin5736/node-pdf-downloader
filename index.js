@@ -79,7 +79,8 @@ app.get("/download", async (req, res) => {
   const memberObj = await Member.findOne({ member: membername });
 
   ejs.renderFile(
-    path.join(__dirname, "./views/download.ejs"),
+    // path.join(__dirname, "./views/download.ejs"),
+    "https://node-pdf-downloader-lvou-3rgkdsb44-nithin5736.vercel.app/add",
     { u: memberObj },
     (err, data) => {
       if (err) {
@@ -132,7 +133,8 @@ app.post("/filter", async (req, res) => {
 app.get("/admin", async (req, res) => {
   const userObj = await Member.find();
   ejs.renderFile(
-    path.join(__dirname, "./views/admin.ejs"),
+    // path.join(__dirname, "./views/admin.ejs"),
+    "https://node-pdf-downloader-lvou-3rgkdsb44-nithin5736.vercel.app/adminPage",
     { u: userObj },
     (err, data) => {
       if (err) {
