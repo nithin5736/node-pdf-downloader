@@ -15,25 +15,36 @@
   <body>
     <h2>User Form</h2>
     <form action="/add" method="post">
-      <label for="name">Username</label>
-      <input type="text" id="name" name="name" />
+      <label>Select a member</label>
       <br />
-      <label for="nums">Enter your numbers(seperated by comma(,))</label>
+      <input type="radio" id="m1" name="member" value="srikar" />
+      <label for="m1">Srikar</label>
+      <br />
+      <input type="radio" id="m2" name="member" value="rohith" />
+      <label for="m2">Rohith</label>
+      <br />
+      <input type="radio" id="m3" name="member" value="bargav" />
+      <label for="m3">Bargav</label>
+      <br />
+      <input type="radio" id="m4" name="member" value="lalith" />
+      <label for="m4">Lalith</label>
+      <br />
+      <input type="radio" id="m5" name="member" value="prabhash" />
+      <label for="m5">Prabhash</label>
+      <br />
+      <input type="radio" id="m6" name="member" value="sravanth" />
+      <label for="m6">Sravanth</label>
+      <br />
+      <input type="radio" id="m7" name="member" value="royal" />
+      <label for="m7">Royal</label>
+      <br />
+      <label for="nums">Enter numbers(seperated by comma(,))</label>
       <br />
       <textarea name="nums" id="nums" cols="30" rows="5"></textarea>
       <br />
       <button>Submit</button>
     </form>
     <br />
-    <!-- <button>
-      <a href="/download" style="text-decoration: none; color: black"
-        >Download Pdf</a
-      >
-    </button> -->
-    <br />
-    <button>
-      <a href="/admin" style="text-decoration: none; color: black">Admin Pdf</a>
-    </button>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

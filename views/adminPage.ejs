@@ -14,25 +14,41 @@
   </head>
   <body>
     <div class="container">
-      <h6>Entry: <%= u.member %></h6>
+     <form action="/filter" method="post">
+       <label for="date">Filter by date</label>
+       <br>
+       <label for="startdate">startdate</label>
+       <input type="date" id="startdate" name="startdate" >
+       <br>
+       <label for="enddate">enddate</label>
+       <input type="date" id="enddate" name="enddate" >
+       <br>
+       <button>Filter</button>
+     </form>
+     <br>
+    <button><a href="/adminPage" style="text-decoration:none; color:black;">Display all entries</a></button>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Number</th>
             <th scope="col">Token</th>
+            <th scope="col">Name</th>
           </tr>
         </thead>
         <tbody>
-          <% for(let i=0;i<u['nums'].length;i++){ %>
-          <tr>
-            <td><%= parseInt(u.nums[i].value) %></td>
-            <td><%= u.nums[i].token %></td>
-          </tr>
+          <% for(let i=0;i<u.length;i++){ %>
+            <% for(let j=0;j<u[i].nums.length;j++){ %>
+                <tr>
+                    <td><%= parseInt(u[i].nums[j].value) %></td>
+                    <td><%= u[i].nums[j].token %></td>
+                    <td><%= u[i].member %></td>
+                </tr>
+            <% } %>
           <% } %>
         </tbody>
       </table>
       <button>
-        <a href="/download" style="text-decoration: none; color: black"
+        <a href="/admin" style="text-decoration: none; color: black"
           >Download Pdf</a
         >
       </button>
@@ -42,5 +58,8 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <script>
+      <!-- window.location.reload("/adminPage"); -->
+    </script>
   </body>
 </html>
