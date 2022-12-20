@@ -79,8 +79,7 @@ app.get("/download", async (req, res) => {
   const memberObj = await Member.findOne({ member: membername });
 
   ejs.renderFile(
-    // path.join(__dirname, "./views/download.ejs"),
-    "https://node-pdf-downloader-lvou-3rgkdsb44-nithin5736.vercel.app/add",
+    path.join(__dirname, "./views/download.ejs"),
     { u: memberObj },
     (err, data) => {
       if (err) {
@@ -127,14 +126,60 @@ app.post("/filter", async (req, res) => {
       filteredMembers.push(members[i]);
     }
   }
-  res.render("adminPage", { u: filteredMembers });
+  res.render("filtered", {
+    u: filteredMembers,
+    startdate: req.body.startdate,
+    enddate: req.body.enddate,
+  });
+});
+
+app.get("/filterdownload", async (req, res) => {
+  const members = await Member.find();
+  const filteredMembers = [];
+  for (let i = 0; i < members.length; i++) {
+    if (
+      members[i].time.toISOString().slice(0, 10) >= req.query.startdate &&
+      members[i].time.toISOString().slice(0, 10) <= req.query.enddate
+    ) {
+      filteredMembers.push(members[i]);
+    }
+  }
+
+  ejs.renderFile(
+    path.join(__dirname, "./views/filterdownload.ejs"),
+    { u: filteredMembers },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        let options = {
+          height: "11.25in",
+          width: "8.5in",
+          header: {
+            height: "20mm",
+          },
+          footer: {
+            height: "20mm",
+          },
+        };
+
+        pdf.create(data, options).toFile("admin.pdf", function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.download("admin.pdf");
+            console.log("File created successfully");
+          }
+        });
+      }
+    }
+  );
 });
 
 app.get("/admin", async (req, res) => {
   const userObj = await Member.find();
   ejs.renderFile(
-    // path.join(__dirname, "./views/admin.ejs"),
-    "https://node-pdf-downloader-lvou-3rgkdsb44-nithin5736.vercel.app/adminPage",
+    path.join(__dirname, "./views/admin.ejs"),
     { u: userObj },
     (err, data) => {
       if (err) {
